@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useState } from "react"
 import { Building2 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import {
     NavigationMenu,
@@ -13,14 +14,6 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-function Link({ href, className, children, ...props }: React.ComponentProps<"a">) {
-    return (
-        <a href={href} className={className} {...props}>
-            {children}
-        </a>
-    )
-}
 
 const components: { title: string; href: string; description: string }[] = [
     {
@@ -49,7 +42,7 @@ export function NavigationMenuDemo() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="flex h-16 w-full items-center justify-between px-4 sm:px-8">
                 {/* Brand / Logo */}
-                <Link href="/" className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+                <Link to="/" className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
                     <Building2 className="h-5 w-5 text-primary" />
                     <span>LPU Room Shift</span>
                 </Link>
@@ -66,7 +59,7 @@ export function NavigationMenuDemo() {
                                             <NavigationMenuLink
                                                 render={
                                                     <Link
-                                                        href={`#hostel-${hostel.trim()}`}
+                                                        to={`#hostel-${hostel.trim()}`}
                                                         className="block select-none rounded-md px-3 py-1.5 text-sm font-medium no-underline outline-none transition-colors hover:bg-muted hover:text-foreground"
                                                     >
                                                         Hostel {hostel.trim()}
@@ -105,7 +98,7 @@ export function NavigationMenuDemo() {
                                             <NavigationMenuLink
                                                 render={
                                                     <Link
-                                                        href={`#seater-${seater}`}
+                                                        to={`#seater-${seater}`}
                                                         className="block select-none rounded-md px-3 py-1.5 text-sm font-medium no-underline outline-none transition-colors hover:bg-muted hover:text-foreground"
                                                     >
                                                         {seater} Seater
@@ -127,7 +120,7 @@ export function NavigationMenuDemo() {
                                             <NavigationMenuLink
                                                 render={
                                                     <Link
-                                                        href={`#block-${block}`}
+                                                        to={`#block-${block}`}
                                                         className="block select-none rounded-md px-3 py-1.5 text-sm font-medium no-underline outline-none transition-colors hover:bg-muted hover:text-foreground"
                                                     >
                                                         Block {block}
@@ -143,7 +136,7 @@ export function NavigationMenuDemo() {
                         <NavigationMenuItem>
                             <NavigationMenuLink
                                 className={navigationMenuTriggerStyle()}
-                                render={<Link href="/roommates">Find Your Roommate</Link>}
+                                render={<Link to="/roommates">Find Your Roommate</Link>}
                             />
                         </NavigationMenuItem>
                     </NavigationMenuList>
@@ -152,8 +145,8 @@ export function NavigationMenuDemo() {
                 {/* Right Action */}
                 <div className="flex items-center gap-2">
                     <Link
-                        href="#post"
-                        className="rounded-md bg-primary px-3.5 py-1.5 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 transition-colors"
+                        to="/add-room"
+                        className="rounded-md bg-primary px-3.5 py-1.5 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 transition-colors cursor-pointer"
                     >
                         Add Room
                     </Link>
@@ -174,7 +167,7 @@ function ListItem({
             <NavigationMenuLink
                 render={
                     <Link
-                        href={href}
+                        to={href}
                         className="block select-none space-y-1 rounded-md p-2.5 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground"
                     >
                         <div className="text-sm font-medium leading-none">{title}</div>

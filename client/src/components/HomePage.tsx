@@ -1,10 +1,5 @@
-import Navbar from "./Navbar";
-import { HostelDetailsCard } from "./HostelDetailsCard";
-export function HomePage(){
-    return(
-        <>
-        <Navbar />
-        <HostelDetailsCard />
-        </>
-    )
+import { HostelDetailsCard } from "./HostelDetailsCard"
+
+export function HomePage() {
+  return <HostelDetailsCard />
 } 

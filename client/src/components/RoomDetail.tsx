@@ -83,117 +83,129 @@ export function RoomDetails({ roomid, room, onBack }: RoomDetailsProps) {
   }, [api])
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-4">
+    <div className="w-full max-w-5xl mx-auto px-4 py-4 sm:px-6 space-y-3">
       {onBack && (
-        <Button variant="outline" onClick={onBack} className="cursor-pointer">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onBack}
+          className="cursor-pointer gap-1.5 text-xs font-medium"
+        >
           ← Back to All Rooms
         </Button>
       )}
 
-      <Card className="overflow-hidden shadow-lg border border-border">
-        {/* Image Carousel */}
-        <div className="relative aspect-video w-full overflow-hidden bg-muted">
-          <Carousel setApi={setApi} className="w-full h-full">
-            <CarouselContent className="h-full">
-              {roomImages.map((imgSrc, index) => (
-                <CarouselItem key={index} className="h-full">
-                  <div className="relative aspect-video w-full h-full overflow-hidden">
-                    <img
-                      src={imgSrc}
-                      alt={`${details.hostelName} photo ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-3 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground shadow-md border-0" />
-            <CarouselNext className="right-3 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground shadow-md border-0" />
-          </Carousel>
+      <Card className="overflow-hidden shadow-lg border border-border p-0 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-stretch">
+          {/* Left: Image Carousel */}
+          <div className="relative w-full h-[280px] sm:h-[340px] md:h-full min-h-[280px] md:min-h-[380px] bg-muted overflow-hidden">
+            <Carousel setApi={setApi} className="w-full h-full">
+              <CarouselContent className="h-full ml-0">
+                {roomImages.map((imgSrc, index) => (
+                  <CarouselItem key={index} className="h-full pl-0">
+                    <div className="relative w-full h-full min-h-[280px] md:min-h-[380px]">
+                      <img
+                        src={imgSrc}
+                        alt={`${details.hostelName} photo ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-3 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground shadow-md border-0" />
+              <CarouselNext className="right-3 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background text-foreground shadow-md border-0" />
+            </Carousel>
 
-          {/* Badge indicator on top-right */}
-          <div className="absolute top-4 right-4 z-10">
-            <Badge
-              variant="secondary"
-              className="text-sm px-3 py-1 shadow bg-background/90 backdrop-blur-xs font-semibold"
-            >
-              {details.hostelType}
-            </Badge>
-          </div>
+            {/* Badge indicator on top-right */}
+            <div className="absolute top-4 right-4 z-10">
+              <Badge
+                variant="secondary"
+                className="text-xs px-2.5 py-1 shadow bg-background/90 backdrop-blur-xs font-semibold"
+              >
+                {details.hostelType}
+              </Badge>
+            </div>
 
-          {/* Slide count indicator on bottom-right */}
-          {count > 1 && (
-            <div className="absolute bottom-3 right-3 z-10 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white backdrop-blur-xs">
-              {current} / {count}
-            </div>
-          )}
-        </div>
-
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">
-            {details.hostelName} - Block {details.blocks}
-          </CardTitle>
-          <div className="text-muted-foreground text-sm">
-            Room ID: <span className="font-mono">{details.roomid}</span>
-          </div>
-        </CardHeader>
-
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-muted/40 p-4 rounded-lg">
-            <div>
-              <span className="text-xs text-muted-foreground uppercase font-semibold">
-                Room Capacity
-              </span>
-              <p className="text-base font-medium">{details.seaters} Seater Room</p>
-            </div>
-            <div>
-              <span className="text-xs text-muted-foreground uppercase font-semibold">
-                Cooling / Facility
-              </span>
-              <p className="text-base font-medium">{details.hostelType}</p>
-            </div>
-            <div>
-              <span className="text-xs text-muted-foreground uppercase font-semibold">
-                Current Resident
-              </span>
-              <p className="text-base font-medium">{details.userName}</p>
-            </div>
-            <div>
-              <span className="text-xs text-muted-foreground uppercase font-semibold">
-                Academic Year
-              </span>
-              <p className="text-base font-medium">{details.userYear}</p>
-            </div>
-            {details.userNumber && (
-              <div className="sm:col-span-2">
-                <span className="text-xs text-muted-foreground uppercase font-semibold">
-                  Contact Number
-                </span>
-                <p className="text-base font-medium text-primary">
-                  <a href={`tel:${details.userNumber}`} className="hover:underline">
-                    +91 {details.userNumber}
-                  </a>
-                </p>
+            {/* Slide count indicator on bottom-right */}
+            {count > 1 && (
+              <div className="absolute bottom-3 right-3 z-10 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white backdrop-blur-xs">
+                {current} / {count}
               </div>
             )}
           </div>
-        </CardContent>
 
-        <CardFooter className="flex flex-col sm:flex-row gap-3">
-          {details.userNumber && (
-            <Button
-              className="w-full sm:flex-1"
-              onClick={() => window.open(`https://wa.me/91${details.userNumber}`, "_blank")}
-            >
-              Chat on WhatsApp
-            </Button>
-          )}
-          {onBack && (
-            <Button variant="outline" className="w-full sm:flex-1" onClick={onBack}>
-              Back to Listings
-            </Button>
-          )}
-        </CardFooter>
+          {/* Right: Card Content & Actions */}
+          <div className="flex flex-col justify-between">
+            <div>
+              <CardHeader className="pt-6 px-6 pb-2">
+                <CardTitle className="text-xl sm:text-2xl font-bold">
+                  {details.hostelName} - Block {details.blocks}
+                </CardTitle>
+                <div className="text-muted-foreground text-xs sm:text-sm mt-0.5">
+                  Room ID: <span className="font-mono">{details.roomid}</span>
+                </div>
+              </CardHeader>
+
+              <CardContent className="px-6 py-3">
+                <div className="grid grid-cols-2 gap-3 bg-muted/40 p-3.5 rounded-lg">
+                  <div>
+                    <span className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">
+                      Room Capacity
+                    </span>
+                    <p className="text-sm font-medium mt-0.5">{details.seaters} Seater Room</p>
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">
+                      Cooling / Facility
+                    </span>
+                    <p className="text-sm font-medium mt-0.5">{details.hostelType}</p>
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">
+                      Current Resident
+                    </span>
+                    <p className="text-sm font-medium mt-0.5">{details.userName}</p>
+                  </div>
+                  <div>
+                    <span className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">
+                      Academic Year
+                    </span>
+                    <p className="text-sm font-medium mt-0.5">{details.userYear}</p>
+                  </div>
+                  {details.userNumber && (
+                    <div className="col-span-2 pt-2 border-t border-border/50">
+                      <span className="text-[11px] text-muted-foreground uppercase font-semibold tracking-wider">
+                        Contact Number
+                      </span>
+                      <p className="text-sm font-medium text-primary mt-0.5">
+                        <a href={`tel:${details.userNumber}`} className="hover:underline">
+                          +91 {details.userNumber}
+                        </a>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </div>
+
+            <CardFooter className="px-6 py-4 flex flex-col sm:flex-row gap-2.5 border-t bg-muted/30">
+              {details.userNumber && (
+                <Button
+                  className="w-full sm:flex-1 cursor-pointer"
+                  onClick={() => window.open(`https://wa.me/91${details.userNumber}`, "_blank")}
+                >
+                  Chat on WhatsApp
+                </Button>
+              )}
+              {onBack && (
+                <Button variant="outline" className="w-full sm:flex-1 cursor-pointer" onClick={onBack}>
+                  Back to Listings
+                </Button>
+              )}
+            </CardFooter>
+          </div>
+        </div>
       </Card>
     </div>
   )

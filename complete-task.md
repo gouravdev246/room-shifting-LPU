@@ -22,3 +22,9 @@
 - Implemented: Updated `RoomDetailData` interface to support `image: string | string[]` and updated card and carousel rendering to seamlessly handle both single image strings and image arrays.
 - Used: TypeScript union types, defensive array checking (`Array.isArray`).
 - Verification: Clean TypeScript compilation (`tsc -b`) and successful Vite production build (`npm run build`).
+
+## 6. RoomAdd Screen and React Router Navigation
+- Implemented: Integrated `react-router-dom` with routes for home (`/`) and room creation (`/add-room`), hooked up the Navbar "Add Room" action button, and built the complete `RoomAdd` form featuring photo upload with multi-image preview/removal, dropdown menus for Hostel, Type (AC/Non-AC), Block, and Seater, along with a normal input field for Room Number and resident contact fields.
+- Used: `react-router-dom` (`BrowserRouter`, `Routes`, `Route`, `Link`, `useNavigate`), Shadcn/Base UI `Select`, `Input`, `Field`, `Card`, Lucide React icons, and HTML5 `FileReader` API.
+- Verification: Clean TypeScript compilation (`tsc -b`) and successful Vite production build (`npm run build`).
+
