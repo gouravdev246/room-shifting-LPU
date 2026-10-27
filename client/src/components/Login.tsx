@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useState } from "react"
-import { useNavigate , Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -35,19 +35,10 @@ export function Login() {
     navigate("/")
   }
 
-  const handleReset = () => {
-    setFormData({
-      name: "",
-      regId: "",
-      contact: "",
-      password: "",
-    })
-  }
-
   return (
     <div className="flex-1 flex min-h-[calc(100vh-4rem)] w-full items-center justify-center p-4 sm:p-6 lg:p-4">
-      <Card className="w-full max-w-md shadow-lg border border-border p-1 sm:p-8">
-        <CardHeader className="px-0 pt-0 pb-1 text-center sm:text-left">
+      <Card className="w-full max-w-md shadow-lg border border-border p-5 sm:p-8">
+        <CardHeader className="px-0 pt-0 pb-2 text-center sm:text-left">
           <CardTitle className="text-2xl font-bold">Login</CardTitle>
           <CardDescription>
             Enter your details to access your account.
@@ -85,20 +76,16 @@ export function Login() {
             </Field>
 
             <Field orientation="horizontal" className="pt-2 flex flex-col-reverse sm:flex-row items-center justify-between gap-3">
-             <Button
-             type="button"
+              <Button
+                type="button"
                 variant="outline"
-                >
-              
-                 <Link to="/register"
                 className="w-full sm:w-auto cursor-pointer"
-                
+                onClick={() => navigate("/register")}
               >
-                --Register--
-              </Link>
-            </Button>
+                Register
+              </Button>
               <Button type="submit" className="w-full sm:w-auto cursor-pointer">
-                --Login--
+                Login
               </Button>
             </Field>
           </FieldGroup>

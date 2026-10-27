@@ -8,7 +8,7 @@ import {Login} from './components/Login'
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen w-full flex flex-col bg-background text-foreground">
+      <div className="min-h-screen w-full flex flex-col bg-background text-foreground overflow-x-hidden">
         <Navbar />
         <main className="flex-1 w-full flex flex-col">
           <Routes>

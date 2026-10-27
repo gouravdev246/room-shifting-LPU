@@ -78,30 +78,32 @@ export function HostelDetailsCard() {
   }
 
   return (
-    <>
-      <div className="text-left pl-6 pt-6 font-medium text-muted-foreground">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <div className="text-left font-medium text-muted-foreground mb-4">
         All Rooms ({hostelsDetails.length})
       </div>
-      <div className="flex flex-row flex-wrap items-stretch justify-start gap-6 p-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full">
         {hostelsDetails.map((hostel, index) => (
-          <Card key={index} className="relative w-[320px] max-w-sm pt-0 overflow-hidden shadow-sm">
-            <img
-              src={Array.isArray(hostel.image) ? hostel.image[0] : hostel.image}
-              alt={hostel.hostelName}
-              className="aspect-video w-full object-cover"
-            />
-            <CardHeader>
-              <CardAction>
-                <Badge variant="secondary">{hostel.hostelType}</Badge>
-              </CardAction>
-              <CardTitle>Hostel : {hostel.hostelName}</CardTitle>
-              <CardDescription>Type : {hostel.hostelType}</CardDescription>
-              <CardDescription>Seater : {hostel.seaters}</CardDescription>
-              <CardDescription>Blocks : {hostel.blocks}</CardDescription>
-              <CardDescription>User Name : {hostel.userName}</CardDescription>
-              <CardDescription>User Year : {hostel.userYear}</CardDescription>
-            </CardHeader>
-            <CardFooter>
+          <Card key={index} className="relative w-full pt-0 overflow-hidden shadow-sm flex flex-col justify-between">
+            <div>
+              <img
+                src={Array.isArray(hostel.image) ? hostel.image[0] : hostel.image}
+                alt={hostel.hostelName}
+                className="aspect-video w-full object-cover"
+              />
+              <CardHeader className="p-4 sm:p-6">
+                <CardAction>
+                  <Badge variant="secondary">{hostel.hostelType}</Badge>
+                </CardAction>
+                <CardTitle className="text-base sm:text-lg">Hostel : {hostel.hostelName}</CardTitle>
+                <CardDescription>Type : {hostel.hostelType}</CardDescription>
+                <CardDescription>Seater : {hostel.seaters}</CardDescription>
+                <CardDescription>Blocks : {hostel.blocks}</CardDescription>
+                <CardDescription>User Name : {hostel.userName}</CardDescription>
+                <CardDescription>User Year : {hostel.userYear}</CardDescription>
+              </CardHeader>
+            </div>
+            <CardFooter className="p-4 sm:p-6 pt-0">
               <Button
                 className="w-full cursor-pointer"
                 onClick={() => setSelectedRoom(hostel)}
@@ -112,6 +114,6 @@ export function HostelDetailsCard() {
           </Card>
         ))}
       </div>
-    </>
+    </div>
   )
 }
