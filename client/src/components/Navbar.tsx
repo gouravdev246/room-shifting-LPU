@@ -37,6 +37,7 @@ export function NavigationMenuDemo() {
     const [hostels] = useState<string[]>(["1", "2", "3"])
     const [seaters] = useState<string[]>(["1", "2", "3", "4", "5"])
     const [blocks] = useState<string[]>(["A", "B", "C", "D"])
+    const [user] = useState<Boolean>(false)
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -145,10 +146,16 @@ export function NavigationMenuDemo() {
                 {/* Right Action */}
                 <div className="flex items-center gap-2">
                     <Link
-                        to="/add-room"
+                        to={user ? "/logout" : "" }
+                        className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+                    >
+                        {user ? "Logout" : ""}
+                    </Link>
+                    <Link
+                        to={user ? "/add-room" : "login"}
                         className="rounded-md bg-primary px-3.5 py-1.5 text-sm font-medium text-primary-foreground shadow-xs hover:bg-primary/90 transition-colors cursor-pointer"
                     >
-                        Add Room
+                        {user ? "Add Room" : "Login"}
                     </Link>
                 </div>
             </div>

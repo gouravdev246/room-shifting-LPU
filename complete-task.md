@@ -28,3 +28,9 @@
 - Used: `react-router-dom` (`BrowserRouter`, `Routes`, `Route`, `Link`, `useNavigate`), Shadcn/Base UI `Select`, `Input`, `Field`, `Card`, Lucide React icons, and HTML5 `FileReader` API.
 - Verification: Clean TypeScript compilation (`tsc -b`) and successful Vite production build (`npm run build`).
 
+## 7. Login Page Centering & Mobile Responsiveness
+- Implemented: Re-architected the `Login` screen layout to be perfectly centered both vertically and horizontally (`min-h-[calc(100vh-4rem)] flex items-center justify-center`), wrapped the form in a Shadcn `Card` with responsive width (`w-full max-w-md`), made buttons touch-friendly and stacked on mobile with `flex-col-reverse sm:flex-row`, resolved duplicate element IDs, and added a Login navigation link in the Navbar.
+- Used: Tailwind CSS flexbox & responsive breakpoints, Shadcn Card & Field primitives, unique accessibility IDs.
+- Verification: Clean TypeScript compilation (`tsc -b`) and successful Vite production build (`npm run build`).
+
+
