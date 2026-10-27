@@ -1,0 +1,66 @@
+### Room Shifting LPU — API Testing Guide
+
+Ensure your server is running first:
+```bash
+cd server
+npm run dev
+```
+
+---
+
+### 1. Test Server Health
+GET http://localhost:5001/health
+
+### 2. Register a Student
+POST http://localhost:5001/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Rahul Kumar",
+  "reg_id": "12204567",
+  "phone": "9876543210",
+  "hostel": "BH-1",
+  "password": "password123"
+}
+
+### 3. Login
+POST http://localhost:5001/api/auth/login
+Content-Type: application/json
+
+{
+  "reg_id": "12204567",
+  "password": "password123"
+}
+
+### 4. Check Current User Session (/me)
+GET http://localhost:5001/api/auth/me
+Authorization: Bearer <PASTE_TOKEN_FROM_LOGIN_HERE>
+
+### 5. Create a Room Listing (Protected)
+POST http://localhost:5001/api/rooms
+Content-Type: application/json
+Authorization: Bearer <PASTE_TOKEN_FROM_LOGIN_HERE>
+
+{
+  "hostel_name": "BH-1",
+  "room_number": "304",
+  "block": "A",
+  "room_type": "AC",
+  "seater": 3,
+  "floor": 3,
+  "description": "Clean 3-seater corner room near lift with balcony",
+  "photos": [
+    "https://images.unsplash.com/photo-1555854877-bab0e564b8d5",
+    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af"
+  ]
+}
+
+### 6. Filter & Search Rooms (Public)
+GET http://localhost:5001/api/rooms?hostel=BH-1&type=AC&seater=3
+
+### 7. Get Room Details by ID
+GET http://localhost:5001/api/rooms/1
+
+### 8. View Owner Contact / WhatsApp (Protected)
+GET http://localhost:5001/api/rooms/1/contact
+Authorization: Bearer <PASTE_TOKEN_FROM_LOGIN_HERE>
