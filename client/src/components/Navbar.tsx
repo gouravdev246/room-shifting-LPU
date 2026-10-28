@@ -38,7 +38,7 @@ export function NavigationMenuDemo() {
     const [hostels] = useState<string[]>(["1", "2", "3"])
     const [seaters] = useState<string[]>(["1", "2", "3", "4", "5"])
     const [blocks] = useState<string[]>(["A", "B", "C", "D"])
-    const [user] = useState<Boolean>(false)
+    const [user] = useState<Boolean>(true)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     return (

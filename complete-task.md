@@ -38,4 +38,14 @@
 - Used: Tailwind CSS v4 responsive grid & flexbox, Lucide React (`Menu`, `X`, `Building2`), React state management.
 - Verification: Clean TypeScript compilation (`tsc -b`), successful Vite production build (`npm run build`), and automated mobile viewport browser verification at 375px width.
 
+## 9. Robust Multi-Path Environment Variable Loading (.env)
+- Implemented: Created a centralized environment configuration loader (`env.js`) that automatically detects and loads `.env` regardless of whether the server is started from the project root or the `server/` directory. Updated `server.js`, `db.js`, and `cloudinary.js` to ensure variables like `DATABASE_URL` are loaded before dependent modules initialize and improved error reporting on startup.
+- Used: Node.js `node:path`, `node:url`, `fs`, `dotenv`.
+- Verification: Tested server execution from both workspace root (`node server/src/server.js`) and server directory (`npm run dev`), verifying `DATABASE_URL` is properly resolved and injected.
+
+## 10. Neon Database Schema Migration & Serverless Driver Integration
+- Implemented: Fixed column check constraints, syntax, and index references in `schema.sql`, added `find_roommate` table and updated student (`st_`) fields, and switched database client to `@neondatabase/serverless` with WebSockets over Port 443 to resolve port 5432 firewall timeouts. Updated `migrate.js` to re-apply the modified schema to Neon cleanly.
+- Used: `@neondatabase/serverless`, `ws`, PostgreSQL DDL migrations.
+- Verification: Successfully executed `migrate.js`, inspected live Neon catalog to confirm all 4 tables (`users`, `rooms`, `room_photos`, `find_roommate`) with updated column structures, and verified startup connection in `server.js`.
+
 
