@@ -48,4 +48,19 @@
 - Used: `@neondatabase/serverless`, `ws`, PostgreSQL DDL migrations.
 - Verification: Successfully executed `migrate.js`, inspected live Neon catalog to confirm all 4 tables (`users`, `rooms`, `room_photos`, `find_roommate`) with updated column structures, and verified startup connection in `server.js`.
 
+## 11. Redis Connection Setup with ioredis
+- Implemented: Configured a resilient Redis client module (`redis.js`) using `ioredis`. Added dual support for standard `REDIS_URL` and Upstash credentials (`UPSTASH_REDIS_REST_URL` + `UPSTASH_REDIS_REST_TOKEN`), automatic TLS configuration, capped exponential backoff retry strategy, and graceful error handling. Hooked connection test into server boot (`server.js`) and documented settings in `.env.example`.
+- Used: `ioredis`, Node.js `URL`, TLS.
+- Verification: Verified PING response (`PONG`), validated set/get/del key cycle against remote Upstash Redis, and verified startup log output in `server.js`.
+
+## 12. Redis Caching & Query Filtering for Room Listings
+- Implemented: Updated `getRooms` in `room.controller.js` to filter room listings by `hostel`, `type`, `seater`, and `block` (showing all rooms if no filters are provided). Implemented deterministic cache key generation from query parameters, 10-minute TTL (600s) on Redis cache storage, cache invalidation upon room creation/deletion, and graceful fallback to PostgreSQL when Redis is unreachable. Synchronized `room.model.js` with active database columns.
+- Used: `ioredis`, PostgreSQL JSON aggregation, Express query handling.
+- Verification: Verified deterministic key generation, verified cache miss storing data with 600s TTL in Upstash Redis, verified subsequent cache hit serving from Redis, and confirmed fallback to DB when Redis error is simulated.
+
+## 13. End-to-End API Test Suite & Auth Schema Synchronization
+- Implemented: Synchronized `auth.model.js`, `authMiddleware.js`, and `optionalAuth.js` with active Neon schema columns (`st_name`, `st_reg_id`, `st_phone`, `st_hostel`, `st_password_hash`). Created an automated test suite (`test-api.js`) covering all endpoints: health check, registration, login (via reg_id and phone), invalid credentials, protected profile, room creation, search/filter queries, Redis cache hit/miss, public phone masking, contact retrieval, owner-only deletion, and logout. Configured `"test": "node test-api.js"` in `package.json`.
+- Used: Express, Node.js fetch, JWT, bcryptjs, Neon PostgreSQL, Upstash Redis.
+- Verification: Executed `npm test`, successfully passing all 16 integration test cases against live Neon and Upstash instances.
+
 

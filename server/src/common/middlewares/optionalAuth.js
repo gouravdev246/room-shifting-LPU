@@ -15,7 +15,15 @@ export const optionalAuth = async (req, res, next) => {
         process.env.JWT_SECRET || 'lpu_room_shifting_jwt_secret_key_2026_secure'
       );
       const userQuery = await pool.query(
-        'SELECT id, name, reg_id, phone, hostel, created_at FROM users WHERE id = $1',
+        `SELECT 
+           id, 
+           st_name as name, 
+           st_reg_id as reg_id, 
+           st_phone as phone, 
+           st_hostel as hostel, 
+           created_at 
+         FROM users 
+         WHERE id = $1`,
         [decoded.id]
       );
       if (userQuery.rows.length > 0) {

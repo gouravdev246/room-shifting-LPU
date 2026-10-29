@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { pool } from '../config/db.js';
+import '../config/env.js';
 
 export const verifyToken = async (req, res, next) => {
   try {
@@ -22,7 +23,15 @@ export const verifyToken = async (req, res, next) => {
     );
 
     const userQuery = await pool.query(
-      'SELECT id, name, reg_id, phone, hostel, created_at FROM users WHERE id = $1',
+      `SELECT 
+         id, 
+         st_name as name, 
+         st_reg_id as reg_id, 
+         st_phone as phone, 
+         st_hostel as hostel, 
+         created_at 
+       FROM users 
+       WHERE id = $1`,
       [decoded.id]
     );
 
