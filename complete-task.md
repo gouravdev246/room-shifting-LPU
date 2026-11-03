@@ -63,4 +63,10 @@
 - Used: Express, Node.js fetch, JWT, bcryptjs, Neon PostgreSQL, Upstash Redis.
 - Verification: Executed `npm test`, successfully passing all 16 integration test cases against live Neon and Upstash instances.
 
+## 14. Frontend API Integration (Auth, Rooms, Upload, Filters & Contact)
+- Implemented: Connected the Vite + React client to all backend APIs tested in `test-api.js`. Added `roomApi`, `uploadApi`, and `systemApi` services to `lib/api.ts` with typed interfaces (`RoomListing`, `RoomFilters`, `CreateRoomPayload`, `RoomContactResponse`). Replaced mock listings in `HostelDetailsCard.tsx` with dynamic API fetching from `GET /api/rooms`, live query filters (`hostel`, `type`, `seater`, `block`) synced to URL search params, and Redis caching badges. Updated `RoomDetail.tsx` to fetch single room details (`GET /api/rooms/:id`), handle phone unmasking for authenticated users, trigger WhatsApp contact (`GET /api/rooms/:id/contact`), and support owner-only deletion (`DELETE /api/rooms/:id`). Wired `RoomAdd.tsx` to publish room listings (`POST /api/rooms`) and upload photos (`POST /api/upload/photos`). Configured dev proxies in `vite.config.ts`.
+- Used: React 19, TypeScript, fetch API, JWT bearer token headers, `react-router-dom` (`useSearchParams`, `useNavigate`), Shadcn UI, Embla Carousel, Lucide icons.
+- Verification: Ran `node server/test-api.js` (all 16 backend tests passed) and ran `client` build (`tsc -b && vite build` passed with zero errors).
+
+
 
