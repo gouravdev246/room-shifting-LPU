@@ -73,5 +73,10 @@
 - Used: Markdown documentation verified against source manifests (`package.json`, `.env.example`, `schema.sql`, routes, Vite config, and `public/diagram.png`).
 - Verification: Inspected `public/diagram.png` and verified referenced file paths, scripts, and endpoint contracts directly in the repository.
 
+## 16. Client TypeScript Build Fix (Unused Locals Cleanup)
+- Implemented: Fixed `TS6133` build failures blocking `npm run build` (`tsc -b && vite build`) by removing unused `Zap` import and `source` state from `HostelDetailsCard.tsx` and unused `React`, `PlusCircle`, `navigation-menu` imports, `typeComponents`, and `ListItem` from `Navbar.tsx` after sections were commented out.
+- Used: TypeScript compiler checks (`noUnusedLocals` in `tsconfig.app.json`).
+- Verification: Executed `npm run build` inside `client/`, passing with exit code 0 and producing `dist/` bundle cleanly.
+
 
 

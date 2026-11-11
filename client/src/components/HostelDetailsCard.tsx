@@ -19,7 +19,6 @@ import {
   PlusCircle,
   AlertCircle,
   Building,
-  Zap,
 } from "lucide-react"
 
 const HOSTEL_OPTIONS = [
@@ -55,7 +54,6 @@ export function HostelDetailsCard() {
 
   const [selectedRoomId, setSelectedRoomId] = useState<string | null>(null)
   const [rooms, setRooms] = useState<RoomListing[]>([])
-  const [source, setSource] = useState<string>("db")
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -99,7 +97,6 @@ export function HostelDetailsCard() {
     try {
       const response = await roomApi.getRooms(queryFilters)
       setRooms(response.rooms || [])
-      setSource(response.source || "db")
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "Failed to load rooms from server."
       setErrorMessage(msg)

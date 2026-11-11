@@ -1,32 +1,8 @@
-import * as React from "react"
 import { useState } from "react"
-import { Building2, Menu, X, User as UserIcon, LogOut, PlusCircle } from "lucide-react"
+import { Building2, Menu, X, User as UserIcon, LogOut } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "@/context/AuthContext"
 import { Button } from "@/components/ui/button"
-
-import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-
-const typeComponents: { title: string; href: string; description: string }[] = [
-    {
-        title: "AC Rooms",
-        href: "/?type=AC",
-        description: "Air-conditioned comfortable rooms",
-    },
-    {
-        title: "Non-AC Rooms",
-        href: "/?type=Non-AC",
-        description: "Affordable rooms with air cooling",
-    },
-]
 
 export function NavigationMenuDemo() {
     const navigate = useNavigate()
@@ -348,31 +324,6 @@ export function NavigationMenuDemo() {
                 </div>
             )}
         </header>
-    )
-}
-
-function ListItem({
-    title,
-    children,
-    href,
-    ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
-    return (
-        <li {...props}>
-            <NavigationMenuLink
-                render={
-                    <Link
-                        to={href}
-                        className="block select-none space-y-1 rounded-md p-2.5 leading-none no-underline outline-none transition-colors hover:bg-muted hover:text-foreground"
-                    >
-                        <div className="text-sm font-medium leading-none">{title}</div>
-                        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
-                            {children}
-                        </p>
-                    </Link>
-                }
-            />
-        </li>
     )
 }
 
