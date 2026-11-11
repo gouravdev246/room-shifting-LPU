@@ -78,5 +78,10 @@
 - Used: TypeScript compiler checks (`noUnusedLocals` in `tsconfig.app.json`).
 - Verification: Executed `npm run build` inside `client/`, passing with exit code 0 and producing `dist/` bundle cleanly.
 
+## 17. Vercel API Proxy & Production CORS Normalization
+- Implemented: Added `client/vercel.json` to rewrite `/api/(.*)` and `/health` to `https://room.bemylove.in` alongside SPA fallback routing to `/index.html`, normalized `VITE_API_URL` trailing slashes in `client/src/lib/api.ts`, and updated `server/src/app.js` CORS origin matching to normalize trailing slashes and support comma-separated `CLIENT_URL` origins.
+- Used: Vercel `rewrites` configuration, Express `cors` dynamic origin check, Vite client API normalization.
+- Verification: Validated `client/vercel.json` JSON structure, ran `npm run build` in `client/` (exit code 0), and ran `npm test` in `server/` (all 16 API tests passed).
+
 
 

@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://room.bemylove.in/api/$1"
+    },
+    {
+      "source": "/health",
+      "destination": "https://room.bemylove.in/health"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
+

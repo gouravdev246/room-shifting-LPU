@@ -92,7 +92,9 @@ export interface UploadPhotoResponse {
   }>;
 }
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) || "";
+const API_BASE_URL = ((import.meta.env.VITE_API_URL as string | undefined) || "")
+  .trim()
+  .replace(/\/+$/, "");
 
 const TOKEN_KEY = "lpu_auth_token";
 const USER_KEY = "lpu_auth_user";
