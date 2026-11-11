@@ -149,11 +149,11 @@ export function HostelDetailsCard() {
           <div className="flex items-center gap-2 text-foreground font-semibold text-base sm:text-lg">
             <SlidersHorizontal className="w-5 h-5 text-primary" />
             <span>Search & Filter Rooms</span>
-            {source === "cache" && (
+            {/* {source === "cache" && (
               <Badge variant="outline" className="text-[10px] gap-1 border-emerald-500/30 text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30">
                 <Zap className="w-3 h-3 text-emerald-500" /> Redis Cached
               </Badge>
-            )}
+            )} */}
           </div>
 
           <div className="flex items-center gap-2.5">

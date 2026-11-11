@@ -77,7 +77,7 @@ export function Login() {
           </div>
           <CardTitle className="text-2xl font-bold tracking-tight">Login</CardTitle>
           <CardDescription>
-            Enter your Registration ID or Phone Number and password to access your account.
+            Enter your Registration ID or Email and password to access your account.
           </CardDescription>
         </CardHeader>
 
@@ -108,7 +108,7 @@ export function Login() {
             <FieldGroup className="space-y-4">
               <Field>
                 <FieldLabel htmlFor="login-identifier">
-                  Registration ID or Phone Number
+                  Registration ID or Email
                 </FieldLabel>
                 <Input
                   id="login-identifier"
