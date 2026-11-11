@@ -68,5 +68,10 @@
 - Used: React 19, TypeScript, fetch API, JWT bearer token headers, `react-router-dom` (`useSearchParams`, `useNavigate`), Shadcn UI, Embla Carousel, Lucide icons.
 - Verification: Ran `node server/test-api.js` (all 16 backend tests passed) and ran `client` build (`tsc -b && vite build` passed with zero errors).
 
+## 15. Project Documentation (Root README.md)
+- Implemented: Created root `README.md` documenting project features, architecture diagram (`./public/diagram.png`), tech stack, repository structure, setup and database migration instructions, environment configuration notes, npm scripts, REST API endpoints, and verification commands.
+- Used: Markdown documentation verified against source manifests (`package.json`, `.env.example`, `schema.sql`, routes, Vite config, and `public/diagram.png`).
+- Verification: Inspected `public/diagram.png` and verified referenced file paths, scripts, and endpoint contracts directly in the repository.
+
 
 
